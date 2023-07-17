@@ -41,6 +41,7 @@ public class Zip implements ActionListener {
                     fis.close();
                     fos.close();
                     gzip.close();
+                    //JOptionPane.showMessageDialog(null,"File compresses successfully!","Information",JOptionPane.OK_OPTION);
 
                 } catch (FileNotFoundException ex) {
                     throw new RuntimeException(ex);
