@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import blogic.Zip;
 
-class Front extends Zip{
+class Front{
     JFrame win;
     JButton compress,decompress;
     Front(){
@@ -19,13 +19,13 @@ class Front extends Zip{
         compress.setFocusable(false);
         compress.setSize(50,50);
         compress.setBounds(400,150,150,100);
-        compress.addActionListener(this);
+        compress.addActionListener(new Zip());
 
         decompress = new JButton("decompress");
         decompress.setFocusable(false);
         decompress.setSize(150,150);
         decompress.setBounds(700,150,150,100);
-        decompress.addActionListener(this);
+        decompress.addActionListener(new Zip());
 
         win.add(compress);
         win.add(decompress);

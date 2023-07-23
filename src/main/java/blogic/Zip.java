@@ -29,36 +29,27 @@ public class Zip implements ActionListener {
                 GZIPOutputStream gzip = null;
 
                 try {
-                    fis = new FileInputStream(file);
-                    fos = new FileOutputStream(parent + "/" + "compressedFile");
-                    gzip = new GZIPOutputStream(fos);
+                 fis = new FileInputStream(file);
+                 fos = new FileOutputStream(parent + "/" + "compressedFile");
+                 gzip = new GZIPOutputStream(fos);
 
                     byte[] arr = new byte[1024];
                     int l;
                     while ((l = fis.read(arr)) != -1) {
                         gzip.write(arr, 0, l);
                     }
-
-                    JOptionPane.showMessageDialog(null,"File compresses successfully!","Information",JOptionPane.OK_OPTION);
+                    fis.close();
+                  //  fos.close();
+                    gzip.close();
+                    JOptionPane.showMessageDialog(null,"File compressed successfully!","Information",JOptionPane.INFORMATION_MESSAGE,null);
 
                 } catch (FileNotFoundException ex) {
-                    JOptionPane.showMessageDialog(null,"File not found!");
+                    JOptionPane.showMessageDialog(null,"File not found!","Error",JOptionPane.ERROR_MESSAGE,null);
                     throw new RuntimeException(ex);
                 } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null,"IO Error occur try again!");
+                    JOptionPane.showMessageDialog(null,"IO Error occur try again!","Error",JOptionPane.ERROR_MESSAGE,null);
                     throw new RuntimeException(ex);
                 }
-                finally{
-                    try {
-                        fis.close();
-                        fos.close();
-                        gzip.close();
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-
-                }
-
             }
 
         } else if (command.equals("decompress")) {
@@ -81,13 +72,16 @@ public class Zip implements ActionListener {
                     while ((l = gzip.read(arr)) != -1) {
                         fos.write(arr, 0, l);
                     }
-                    fis.close();
+                    //fis.close();
                     fos.close();
                     gzip.close();
+                    JOptionPane.showMessageDialog(null,"File decompressed successfully!","Information",JOptionPane.INFORMATION_MESSAGE,null);
 
                 } catch (FileNotFoundException ex) {
+                    JOptionPane.showMessageDialog(null,"File not found!","Error",JOptionPane.ERROR_MESSAGE,null);
                     throw new RuntimeException(ex);
                 } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null,"IO Error occur try again!","Error",JOptionPane.ERROR_MESSAGE,null);
                     throw new RuntimeException(ex);
                 }
             }
