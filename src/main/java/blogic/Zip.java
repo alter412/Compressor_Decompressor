@@ -38,15 +38,25 @@ public class Zip implements ActionListener {
                     while ((l = fis.read(arr)) != -1) {
                         gzip.write(arr, 0, l);
                     }
-                    fis.close();
-                    fos.close();
-                    gzip.close();
-                    //JOptionPane.showMessageDialog(null,"File compresses successfully!","Information",JOptionPane.OK_OPTION);
+
+                    JOptionPane.showMessageDialog(null,"File compresses successfully!","Information",JOptionPane.OK_OPTION);
 
                 } catch (FileNotFoundException ex) {
+                    JOptionPane.showMessageDialog(null,"File not found!");
                     throw new RuntimeException(ex);
                 } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null,"IO Error occur try again!");
                     throw new RuntimeException(ex);
+                }
+                finally{
+                    try {
+                        fis.close();
+                        fos.close();
+                        gzip.close();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+
                 }
 
             }
