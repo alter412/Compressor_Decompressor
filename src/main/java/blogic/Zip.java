@@ -44,7 +44,7 @@ public class Zip implements ActionListener {
 
                     byte[] arr = new byte[1024];
                     int l;
-                    // write using not reached the end of file
+                    // write while not reached the end of file
                     while ((l = fis.read(arr)) != -1) {
                         gzip.write(arr, 0, l);
                     }
